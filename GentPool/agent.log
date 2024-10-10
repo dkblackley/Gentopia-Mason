@@ -1,0 +1,21 @@
+INFO:root:Creating Config from file: ./gentpool/pool/test/agent.yaml
+INFO:root:Starting to load configuration from ./gentpool/pool/test/agent.yaml
+INFO:root:Successfully loaded configuration from ./gentpool/pool/test/agent.yaml
+INFO:root:--------------------
+INFO:root:[green]Welcome to Gentopia!
+INFO:root:--------------------
+INFO:root:[green]User: 
+INFO:root:test is thinking...
+INFO:root:Done
+INFO:root:[blue]test: 
+INFO:root:Hello! I'm an AI language model created by OpenAI. I'm here to help answer your questions, provide information, or assist with a variety of topics. How can I help you today?
+INFO:root:Done
+INFO:root:[green]User: 
+INFO:root:test is thinking...
+INFO:root:Done
+INFO:root:[blue]test: 
+INFO:root:It seems like you might want to end our conversation. If you have any more questions or need assistance in the future, feel free to return. Have a great day!
+INFO:root:Done
+INFO:root:[green]User: 
+INFO:root:
+[red]Bye!
