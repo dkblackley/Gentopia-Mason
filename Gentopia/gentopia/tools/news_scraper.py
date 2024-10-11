@@ -13,13 +13,11 @@ from playwright.sync_api import sync_playwright
 
 class ScrapeHeadlines(BaseTool):
     name = "get_headlines"
-    description: str = ("parses a pdf and returns a page."
-                   "input a url to a pdf you found on the internet."
-                    "the url MUST end in \".pdf\". You can find links to pdfs via an internet search"
-                   "also input the \"page_number\" that you want. Default is 0 (the first page)"
+    description: str = ("Get's worldwide news headlines form multiple different websites"
+                        "Specifically BBC, CNN, ABC and Fox. Doesn't het the article contents, just returns a bunch of headlines'"
                    )
 
-    def _run(self) -> AnyStr:
+    def _run(self, *args: Any, **kwargs: Any) -> AnyStr:
         
         headlines = {}
 
@@ -40,16 +38,16 @@ class ScrapeHeadlines(BaseTool):
             
                 # Scrape headlines based on each site's HTML tags (Unfortunately will need constant updating with time)
                 if site == "BBC News":
-                    headlines[site] = [h.text.strip() for h in soup.select('h2[data-testid="card-headline"]')]
+                    headlines[site] = [h.text.strip() for h in soup.select('h2[data-testid="card-headline"]')[:10]]
             
                 elif site == "ABC News":
-                    headlines[site] = [a.get_text(strip=True) for a in soup.select("a[href*='/story']")]
+                    headlines[site] = [a.get_text(strip=True) for a in soup.select("a[href*='/story']")[:10]]
             
                 elif site == "CNN":
-                    headlines[site] = [h.text.strip() for h in soup.select('span.container__headline-text')]
+                    headlines[site] = [h.text.strip() for h in soup.select('span.container__headline-text')[:10]]
             
                 elif site == "Fox News":
-                    headlines[site] = [h.text.strip() for h in soup.select('h3.title a')]
+                    headlines[site] = [h.text.strip() for h in soup.select('h3.title a')[:10]]
 
             except Exception as e:
                 headlines[site] = f"Error fetching headlines: {e}"
@@ -68,10 +66,11 @@ class SearchNewsArgs(BaseModel):
 
 class SearchNews(BaseTool):
     name = "get_articles"
-    description: str = ("Returns 5 recent articles for a given search term or keyword"
+    description: str = ("Returns 3 recent articles for a given search term or keyword"
                         "This scrapes from google news, so results might look weird"
                         "This function can be useful if someone wants to know what's happening in a specific area"
-                        "Can also be insightful if someone just asks a general question about something or someplace")
+                        "Can also be insightful if someone just asks a general question about something or someplace"
+                         "This will give you a lot of information, so try not to dump it back at the user unless they ask for it.")
     args_schema: Optional[Type[BaseModel]] = SearchNewsArgs
 
 
@@ -80,7 +79,7 @@ class SearchNews(BaseTool):
         query = query.replace(' ', '+')
         url = f"https://news.google.com/search?q={query}&hl=en-US&gl=US&ceid=US:en"
 
-        num_articles = 5
+        num_articles = 4
         response = requests.get(url)
     
         # Check if the request was successful
@@ -117,7 +116,7 @@ def get_article_content(url):
             html = page.content()
             soup = BeautifulSoup(html, 'html.parser')
             paragraphs = soup.find_all('p')
-            content = '\n'.join(p.get_text(strip=True) for p in paragraphs)
+            content = '\n'.join(p.get_text(strip=True) for p in paragraphs[:40])
 
             browser.close()
             

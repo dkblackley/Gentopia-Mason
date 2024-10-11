@@ -21,15 +21,18 @@ class ParsePdf(BaseTool):
 
     def _run(self, url: AnyStr, page_num: int = 0) -> AnyStr:
 
+        try:
         
-        response = requests.get(url)
-        response.raise_for_status()
-        content_dump = BytesIO(response.content)
-        reader = PdfReader(content_dump)
-        page = reader.pages[page_num]
-        page_text = page.extract_text()
+            response = requests.get(url)
+            response.raise_for_status()
+            content_dump = BytesIO(response.content)
+            reader = PdfReader(content_dump)
+            page = reader.pages[page_num]
+            page_text = page.extract_text()
 
-        return page_text
+            return page_text
+        except Exception:
+            return "Error reading pdf!"
 
 
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
@@ -49,15 +52,21 @@ class ParsePdfMetadata(BaseTool):
     args_schema: Optional[Type[BaseModel]] = PdfArg
 
     def _run(self, url: AnyStr) -> AnyStr:
-        response = requests.get(url)
-        response.raise_for_status()
-        pdf_stream = BytesIO(response.content)
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            pdf_stream = BytesIO(response.content)
     
-        reader = PdfReader(pdf_stream)
-        metadata = reader.metadata
-        metadata_str = "\n\n".join(f"{key}: {value}" for key, value in metadata.items())
+            reader = PdfReader(pdf_stream)
+            metadata = reader.metadata
+            metadata_str = "\n\n".join(f"{key}: {value}" for key, value in metadata.items())
         
-        return metadata_str
+            return metadata_str
+        except Exception:
+            return "Error extracting metadata!"
+            
+
+        
 
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
         raise NotImplementedError

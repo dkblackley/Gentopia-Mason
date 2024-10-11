@@ -8,32 +8,119 @@ INFO:root:[green]User:
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
 INFO:root:[blue]pdf_search_scholar: 
-INFO:root:{"name":"google_search", "arguments":{"query":"David Wu SPIRAL paper pdf"}}
+INFO:root:{"name":"search_single_paper", "arguments":{"title":"SPIRAL","top_k":5}}
+
+INFO:root:Calling function: search_single_paper ...
+INFO:scholarly:Getting https://scholar.google.com/scholar?hl=en&q=SPIRAL
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?hl=en&q=SPIRAL "HTTP/1.1 200 OK"
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:{'title': 'Spiral demystified', 'author': ['BMA Delattre', 'RM Heidemann', 'LA Crowe'], 'pub_year': '2010', 'venue': 'Magnetic resonance …', 'abstract': 'applications for spiral imaging exists, this review article is focused on examples from cardiac  and head imaging to illustrate specific properties of spiral imaging. Indeed, spiral sampling', 'url': 'https://www.sciencedirect.com/science/article/pii/S0730725X10000998', 'citation': 114}
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"search_related_paper", "arguments":{"title":"SPIRAL","top_k":5}}
+
+INFO:root:Calling function: search_related_paper ...
+INFO:scholarly:Getting https://scholar.google.com/scholar?hl=en&q=SPIRAL
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?hl=en&q=SPIRAL "HTTP/1.1 200 OK"
+INFO:scholarly:Getting https://scholar.google.com/scholar?q=related:I4mhu8PtOHoJ:scholar.google.com/&scioq=SPIRAL&hl=en&as_sdt=0,47
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?q=related:I4mhu8PtOHoJ:scholar.google.com%2F&scioq=SPIRAL&hl=en&as_sdt=0,47 "HTTP/1.1 200 OK"
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:{'title': 'Spiral demystified', 'author': ['BMA Delattre', 'RM Heidemann', 'LA Crowe'], 'pub_year': '2010', 'venue': 'Magnetic resonance …', 'abstract': 'Spiral acquisition schemes offer unique advantages such as flow compensation, efficient k-space sampling and robustness against motion that make this option a viable choice among', 'url': 'https://www.sciencedirect.com/science/article/pii/S0730725X10000998', 'citation': 114}
+
+{'title': 'Auto‐calibrated parallel spiral imaging', 'author': ['K Heberlein and', 'X Hu'], 'pub_year': '2006', 'venue': '… in Medicine: An Official Journal of the …', 'abstract': 'This work describes an auto‐calibrated method for parallel imaging with spiral trajectory. The method is ak‐space approach where an interpolation kernel, accounting for coil', 'url': 'https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.20811', 'citation': 68}
+
+{'title': 'Spiral imaging: a critical appraisal', 'author': ['KT Block', 'J Frahm'], 'pub_year': '2005', 'venue': '… Resonance Imaging: An Official Journal of …', 'abstract': 'In view of recent applications in cardiovascular and functional brain imaging, this work revisits the basic performance characteristics of spiral imaging in direct comparison to echo', 'url': 'https://onlinelibrary.wiley.com/doi/abs/10.1002/jmri.20320', 'citation': 150}
+
+{'title': 'Direct parallel image reconstructions for spiral trajectories using GRAPPA', 'author': ['RM Heidemann', 'MA Griswold'], 'pub_year': '2006', 'venue': '… in Medicine: An …', 'abstract': 'The use of spiral trajectories is an efficient way to cover a desired k‐space partition in magnetic resonance imaging (MRI). Compared to conventional Cartesian k‐space', 'url': 'https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.20951', 'citation': 123}
+
+{'title': 'A simple acquisition strategy to avoid off‐resonance blurring in spiral imaging with redundant spiral‐in/out k‐space trajectories', 'author': ['SW Fielden', 'CH Meyer'], 'pub_year': '2015', 'venue': 'Magnetic Resonance in Medicine', 'abstract': 'Purpose The major hurdle to widespread adoption of spiral trajectories has been their poor off‐resonance performance. Here we present a self‐correcting spiral k‐space trajectory that', 'url': 'https://onlinelibrary.wiley.com/doi/abs/10.1002/mrm.25172', 'citation': 26}
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"google_search", "arguments":{"query":"David Wu SPIRAL paper"}}
 
 INFO:root:Calling function: google_search ...
 INFO:root:Done
 INFO:root:--------------------
-INFO:root:SearchResult(url=https://www.cs.utexas.edu/~dwu4/spiral.html, title=Publications, description=We introduce the Spiral family of single-server private information retrieval (PIR) protocols. Spiral relies on a composition of two lattice-based homomorphic ...)
+INFO:root:SearchResult(url=https://www.cs.utexas.edu/~dwu4/spiral.html, title=Publications, description=Spiral relies on a composition of two lattice-based homomorphic encryption schemes: the Regev encryption scheme and the Gentry-Sahai-Waters encryption scheme.)
 
-SearchResult(url=https://eprint.iacr.org/2022/368.pdf, title=Spiral: Fast, High-Rate Single-Server PIR via FHE Composition, description=by SJ Menon · 2022 · Cited by 88 — Abstract. We introduce the Spiral family of single-server private information retrieval (PIR) protocols. Spiral relies.)
+SearchResult(url=https://eprint.iacr.org/2022/368.pdf, title=Spiral: Fast, High-Rate Single-Server PIR via FHE Composition, description=by SJ Menon · 2022 · Cited by 88 — [MW22]. Samir Jordan Menon and David J. Wu. Spiral: Fast, high-rate single-server PIR via FHE composition. In. IEEE S&P, 2022. [OS07].)
 
-SearchResult(url=https://www.cs.utexas.edu/~dwu4/talks/Spiral0723.pdf, title=Spiral: Fast, High-Rate Single-Server PIR via FHE ..., description=SPIRAL: Fast High-Rate Single-Server. Private Information Retrieval. Samir Menon and David Wu. July 2023. IEEE Security and Privacy (“Oakland”), 2022. Page 2 ...)
+SearchResult(url=https://scholar.google.com/citations?user=sow8PQYAAAAJ&hl=en, title=David Wu, description=DJ Wu, J Zimmerman, J Planul, JC Mitchell. arXiv preprint arXiv:1601.02281, 2016. 90, 2016. Spiral: Fast, high-rate single-server PIR via FHE composition. SJ ...)
+
+SearchResult(url=https://www.cs.utexas.edu/~dwu4/fhe-project.html, title=Fully Homomorphic Encryption, description=A fully homomorphic encryption system enables computations to be performed on encrypted data without needing to first decrypt the data.)
+
+SearchResult(url=https://dblp.org/pid/32/10400-1, title=David J. Wu 0001, description=Samir Jordan Menon, David J. Wu: SPIRAL: Fast, High-Rate Single-Server PIR via FHE Composition. SP 2022: 930-947. [c31]. view. electronic edition via DOI ...)
+
+SearchResult(url=https://spiralwiki.com/, title=Spiral Demo, description=The scheme that this demo uses is "Spiral", which is a joint work with Prof. David Wu at UT Austin.)
+
+SearchResult(url=https://spiraldb.xyz/balances, title=Private Bitcoin Balance Lookup via Spiral, description=The scheme used is outlined in our paper "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition" (joint work with Prof. David Wu at UT Austin). The ...)
 
 SearchResult(url=https://www.usenix.org/system/files/sec23fall-prepub-78-colombo.pdf, title=Authenticated private information retrieval, description=by S Colombo · Cited by 26 — David J. Wu. UT Austin. Bryan Ford. EPFL. Abstract. This paper introduces protocols for authenticated private information retrieval. These schemes enable a ...)
 
 SearchResult(url=https://git-crysp.uwaterloo.ca/iang/spiral-spir, title=Symmetric Private Information Retrieval (SPIR) built on Spiral, description=Spiral is a recent single-server (computational) PIR system from 2022: Samir Jordan Menon, David J. Wu, "Spiral: Fast, High-Rate Single-Server PIR via FHE ...)
 
-SearchResult(url=https://eprint.iacr.org/2022/949.pdf, title=Simple and Fast Single-Server Private Information Retrieval, description=by A Henzinger · 2022 · Cited by 77 — [76] Samir Jordan Menon and David J. Wu. Spiral: Fast, high-rate single-server PIR via FHE composition. In. S&P, 2022. [77] ...)
+SearchResult(url=https://www.researchgate.net/profile/David-Wu, title=David Wu Academia Sinica · Institute of Chemistry, description=In this paper, equilibrium properties of structure II hydrates of hydrogen were determined from Monte Carlo simulations in the isothermal-isobaric Gibbs ...)
 
-SearchResult(url=https://www.usenix.org/system/files/sec23summer_27-henzinger-prepub.pdf, title=Simple and Fast Single-Server Private Information Retrieval, description=by A Henzinger · Cited by 77 — In this paper, we present two new single-server PIR schemes that exceed the throughput of all existing single-server PIR protocols and approach the throughput ...)
+SearchResult(url=https://groups.google.com/g/friam/c/0C96M963i-g, title=Practical homomorphic encryption, description=I didn't read the paper, but I did try their demo. ... Subject: Samir Menon: Spiral: Fast, High-Rate Single-Server PIR via FHE Composition ... This is joint work ...)
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"parse_pdf", "arguments":{"url":"https://eprint.iacr.org/2022/368.pdf","page_num":0}}
 
-SearchResult(url=https://scholar.google.com/citations?user=sow8PQYAAAAJ&hl=en, title=David Wu, description=DJ Wu, J Zimmerman, J Planul, JC Mitchell. arXiv preprint arXiv:1601.02281, 2016. 90, 2016. Spiral: Fast, high-rate single-server PIR via FHE composition. SJ ...)
-
-SearchResult(url=https://www.researchgate.net/publication/362983821_Experimental_Investigation_of_Interactions_Between_Two_Closely_Spaced_Azimuthal_Modes_in_a_Multi-Nozzle_Can_Combustor, title=Experimental Investigation of Interactions Between Two ..., description=This study investigates the instability amplitudes, spin ratio, and phase difference of two closely spaced, yet distinct azimuthal modes; one is the first ...)
-
-SearchResult(url=https://scholar.harvard.edu/files/dtingley/files/tinyml.pdf, title=Widening Access to Applied Machine Learning with TinyML, description=Abstract. Broadening access to both computational and educational resources is crit- ical to diffusing machine-learning (ML) innovation.)
-
-SearchResult(url=https://idr.nitk.ac.in/jspui/bitstream/123456789/14193/1/110657EC11F01.pdf, title=VISUALLY LOSSLESS COMPRESSION OF VOLUMETRIC ..., description=by C B K · 2017 — David Wu et al. (Wu et al. 2006) proposed a simple perceptual based ... pdf. (Accessed on June 2016). Safranek, R. J. and J. D. Johnston (1989). “A ...)
+INFO:root:Calling function: parse_pdf ...
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:S/p.sc/i.sc/r.sc/a.sc/l.sc : Fast, High-Rate Single-Server PIR via FHE Composition∗
+Samir Jordan Menon
+Unaﬃliated
+menon.samir@gmail.comDavid J. Wu
+UT Austin
+dwu4@cs.utexas.edu
+Abstract
+We introduce the S/p.sc/i.sc/r.sc/a.sc/l.sc family of single-server private information retrieval (PIR) protocols. S/p.sc/i.sc/r.sc/a.sc/l.sc relies
+on a composition of two lattice-based homomorphic encryption schemes: the Regev encryption scheme and the
+Gentry-Sahai-Waters encryption scheme. We introduce new ciphertext translation techniques to convert between
+these two schemes and in doing so, enable new trade-oﬀs in communication and computation. Across a broad range
+of database con/f_igurations, the basic version of S/p.sc/i.sc/r.sc/a.sc/l.sc simultaneously achieves at least a 4.5×reduction in query size,
+1.5×reduction in response size, and 2×increase in server throughput compared to previous systems. A variant of
+our scheme, S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc , is optimized for the streaming setting and achieves a server throughput of 1.9GB/s
+for databases with over a million records (compared to 200MB/s for previous protocols) and a rate of 0.81(compared
+to0.24for previous protocols). For streaming large records (e.g., a private video stream), we estimate the monetary
+cost of S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc to be only 1.9×greater than that of the no-privacy baseline where the client directly
+downloads the desired record.
+1 Introduction
+A private information retrieval (PIR) [CGKS95] protocol enables a client to download an element from a public
+database without revealing to the database server which record is being requested. Beyond its direct applications
+to private database queries, PIR is a core building block in a wide range of privacy-preserving applications such as
+anonymous messaging [MOT+11, KLDF16, AS16, ACLS18], contact discovery [BDG15, DRRT18], private contact
+tracing [TSS+20], private navigation [FKP15, WZPM16], and safe browsing [KC21].
+Private information retrieval protocols fall under two main categories: (1) multi-server protocols where the
+database is replicated across multiple servers [CGKS95]; and (2) single-server protocols where the database lives on a
+single server [KO97]. We refer to [Gas04, OS07] for excellent surveys of single-server and multi-server constructions.
+In many settings, multi-server constructions have reduced computational overhead compared to single-server
+constructions and can often achieve information-theoretic security. The drawback, however, is their reliance on
+having multiple non-colluding servers; this assumption can be challenging to realize in practice.
+Conversely, single-server PIR protocols do not assume non-colluding servers. Instead, existing single-server PIR
+implementations have signi/f_icantly higher computational costs compared to multi-server constructions. Indeed, it was
+believed that single-server PIR would never outperform the “trivial PIR” of simply having the client download the entire
+database [SC07]. While this assumption applied to earlier number-theoretic PIR schemes [KO97, CMS99, Cha04, GR05],
+recent lattice-based constructions [MBFK16, ACLS18, GH19, PT20, AYA+21, MCR21] have made signi/f_icant strides in
+concrete eﬃciency and are much faster than the trivial PIR in many settings.
+When studying PIR protocols, we are primarily interested in the (1) rate, which is the ratio of the response size to
+the size of the retrieved record; and (2) the server throughput , which is the ratio of the database size to the server’s
+computation time. The rate measures the overhead in the server-to-client communication while the throughput
+measures how fast the server can answer a PIR query as a function of the database size. A third quantity of interest is
+the query size. Recent constructions are able to achieve relatively compact queries (e.g., 32–64 KB queries in the case
+of [ACLS18, MCR21] for databases with millions of records and tens of gigabytes of data).
+∗This is the extended version of a paper by the same title that appeared at IEEE Security & Privacy 2022 [MW22].
+1
 INFO:root:--------------------
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
@@ -94,15 +181,29 @@ INFO:root:--------------------
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
 INFO:root:[blue]pdf_search_scholar: 
-INFO:root:On the second page of David Wu's paper titled "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition," the content discusses the performance of the current state-of-the-art single-server Private Information Retrieval (PIR) protocol, OnionPIR, which achieves a rate of 0.24 and a throughput of 149 MB/s. In contrast, the fastest two-server PIR scheme can achieve a rate of approximately 1 and a throughput of 5.5 GB/s. The paper introduces the Spiral family of lattice-based single-server PIR schemes, which enables new trade-offs in communication and computation.
+INFO:root:David Wu's paper titled "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition" introduces a new family of single-server private information retrieval (PIR) protocols called SPIRAL. This work focuses on improving the efficiency of single-server PIR systems, which allow a client to retrieve data from a database without revealing which specific record is being accessed.
 
-Key points include:
-- The basic instantiation of Spiral achieves a 4.5× reduction in query size, a 1.5× increase in rate, and a 2× increase in server throughput compared to OnionPIR.
-- The protocol operates in a model where the client sends a set of query-independent public parameters to the server, which can be reused for multiple queries.
-- Several variants of the Spiral protocol are introduced, optimized for different settings, such as streaming and response packing, each with varying trade-offs in terms of query size, rate, and server throughput.
+### Key Contributions:
+1. **Lattice-Based Homomorphic Encryption**: SPIRAL relies on a combination of two lattice-based homomorphic encryption schemes: the Regev encryption scheme and the Gentry-Sahai-Waters encryption scheme. This combination enables new techniques for ciphertext translation, which facilitate trade-offs in communication and computation.
 
-The paper emphasizes the competitive performance of the Spiral protocol in comparison to existing schemes, particularly in scenarios where public parameters and queries are reused for multiple queries.
+2. **Performance Improvements**: The basic version of SPIRAL achieves significant performance enhancements:
+   - **4.5× reduction in query size**
+   - **1.5× increase in response size**
+   - **2× increase in server throughput** compared to previous systems like OnionPIR.
+
+3. **Streaming Optimization**: A variant of the protocol, optimized for streaming applications, achieves a server throughput of **1.9 GB/s** for databases with over a million records, which is a substantial improvement over previous protocols.
+
+4. **Cost Efficiency**: For streaming large records, the estimated monetary cost of using SPIRAL is only **1.9× greater** than the baseline of directly downloading the desired record without privacy.
+
+### Technical Details:
+- The paper discusses the structure of the SPIRAL protocol, which operates in two phases: an offline phase where public parameters are generated and communicated, and an online phase where the client sends queries and receives responses.
+- The authors introduce several variants of SPIRAL that optimize for different scenarios, such as larger records or higher throughput, while also discussing the trade-offs involved.
+
+### Limitations:
+- One limitation noted is that SPIRAL generally requires larger public parameters compared to previous schemes, which may affect its practicality in certain applications.
+
+Overall, the SPIRAL protocol represents a significant advancement in the field of private information retrieval, particularly for single-server systems, by leveraging advanced encryption techniques to enhance both efficiency and privacy. 
+
+If you need more specific details or further analysis, feel free to ask!
 INFO:root:Done
 INFO:root:[green]User: 
-INFO:root:
-[red]Bye!
