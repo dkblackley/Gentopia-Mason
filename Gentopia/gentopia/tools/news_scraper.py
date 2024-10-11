@@ -67,36 +67,32 @@ class SearchNewsArgs(BaseModel):
 
 
 class SearchNews(BaseTool):
-    name = "get_headlines"
-    description: str = ("Returns 6 most recent headlines and articles for a given search term or keyword"
-                        "Websites used are CNN and ABC News"
+    name = "get_articles"
+    description: str = ("Returns 5 recent articles for a given search term or keyword"
+                        "This scrapes from google news, so results might look weird"
                         "This function can be useful if someone wants to know what's happening in a specific area"
                         "Can also be insightful if someone just asks a general question about something or someplace")
     args_schema: Optional[Type[BaseModel]] = SearchNewsArgs
 
 
-    def _run(self, query):
+    def _run(self, query: AnyStr):
         # Replace spaces with '+' for the query string
         query = query.replace(' ', '+')
         url = f"https://news.google.com/search?q={query}&hl=en-US&gl=US&ceid=US:en"
 
-
-        num_articles = 1
+        num_articles = 5
         response = requests.get(url)
     
         # Check if the request was successful
         if response.status_code == 200:
-            # Parse the HTML content
             soup = BeautifulSoup(response.text, 'html.parser')
-        
-            # Find articles
             articles = soup.find_all('article', limit=num_articles)
             article_content = []
             for article in articles:
                 # Extract the title and link
                 title = article.find('h3').text if article.find('h3') else "No title found"
                 link = article.find('a')['href'] if article.find('a') else "No link found"
-                link = f"https://news.google.com{link[1:]}"  # Append the base URL
+                link = f"https://news.google.com{link[1:]}"
                 article_content.append(get_article_content(link))
             return '\n\n'.join(article_content)
         else:
@@ -110,33 +106,19 @@ class SearchNews(BaseTool):
 
 def get_article_content(url):
     try:
-        # Start Playwright and open a browser in headless mode
+        # Remember to run playwright install
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
-            
-            # Set a user-agent to mimic a real browser
-            page.set_user_agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3')
-            
-            # Navigate to the URL
-            page.goto(url)
-            
-            # Wait for content to load; you can adjust the time or use other wait conditions if needed
-            page.wait_for_timeout(5000)  # Wait for 5 seconds
 
-            # Get the page content after JavaScript has loaded
+            page.goto(url)
+            page.wait_for_timeout(1500)  # Google likes to 429 you, if you're too quick
+
             html = page.content()
-            
-            # Parse the HTML with BeautifulSoup
-            from bs4 import BeautifulSoup
             soup = BeautifulSoup(html, 'html.parser')
             paragraphs = soup.find_all('p')
             content = '\n'.join(p.get_text(strip=True) for p in paragraphs)
-            
-            print("Extracted content:")
-            print(content)
-            
-            # Close the browser
+
             browser.close()
             
             return content
@@ -145,9 +127,9 @@ def get_article_content(url):
         return None
     
 if __name__ == "__main__":
-    # ans = ScrapeHeadlines()._run()
-    # print("output")
-    # print(ans)
+    ans = ScrapeHeadlines()._run()
+    print("output")
+    print(ans)
 
     ans = SearchNews()._run("james")
     print("output")

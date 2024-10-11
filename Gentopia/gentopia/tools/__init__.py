@@ -14,6 +14,7 @@ from .code_interpreter import PythonCodeInterpreter
 from .file_operation import WriteFile, ReadFile
 from .duckduckgo import DuckDuckGo
 from .pdf_reader import ParsePdf, ParsePdfMetadata
+from .news_scraper import ScrapeHeadlines, SearchNews
 
 
 def load_tools(name: str) -> BaseTool:
@@ -46,6 +47,8 @@ def load_tools(name: str) -> BaseTool:
         "search_cite_paper": SearchCitePaper,
         "parse_pdf": ParsePdf,
         "pdf_metadata": ParsePdfMetadata,
+        "get_headlines": ScrapeHeadlines,
+        "get_articles": SearchNews,
     }
     if name not in name2tool:
         raise NotImplementedError
