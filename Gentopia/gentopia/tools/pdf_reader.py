@@ -6,21 +6,27 @@ import requests
 from pypdf import PdfReader
 from io import BytesIO
 
+class PdfArg(BaseModel):
+    url: str = Field(..., description="A url that points to a .pdf file. MUST END WITH \".pdf\"")
+    page_num: int = Field(..., description="The page number you want, defaults to 0 (the first page)")
 
 class ParsePdf(BaseTool):
     name = "parse_pdf"
     description: str = ("parses a pdf and returns a page."
                    "input a url to a pdf you found on the internet."
-                   "also input the \"page_number\" that you want."
+                    "the url MUST end in \".pdf\". You can find links to pdfs via an internet search"
+                   "also input the \"page_number\" that you want. Default is 0 (the first page)"
                    )
+    args_schema: Optional[Type[BaseModel]] = PdfArg
 
-    def _run(self, url: AnyStr, page_number: int = 0) -> AnyStr:
+    def _run(self, url: AnyStr, page_num: int = 0) -> AnyStr:
 
+        
         response = requests.get(url)
         response.raise_for_status()
         content_dump = BytesIO(response.content)
         reader = PdfReader(content_dump)
-        page = reader.pages[page_number]
+        page = reader.pages[page_num]
         page_text = page.extract_text()
 
         return page_text
@@ -29,12 +35,18 @@ class ParsePdf(BaseTool):
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
         raise NotImplementedError
 
+
+class PdfMetadataArgs(BaseModel):
+    url: str = Field(..., description="A url that points to a .pdf file")
+   
+    
 class ParsePdfMetadata(BaseTool):
     name = "pdf_metadata"
     description: str = ("returns the author or any pdf metadata if availible."
                         "this might not give useful information."
-                        "input a url to a pdf you found on the internet."
+                        "the url MUST end in \".pdf\". You can find links to pdfs via an internet search"
                         )
+    args_schema: Optional[Type[BaseModel]] = PdfArg
 
     def _run(self, url: AnyStr) -> AnyStr:
         response = requests.get(url)
@@ -51,10 +63,10 @@ class ParsePdfMetadata(BaseTool):
         raise NotImplementedError
     
 if __name__ == "__main__":
-    ans = ParsePdf()._run("https://crypto.stanford.edu/~dabo/courses/cs355_fall07/pir.pdf")
+    ans = ParsePdf()._run("https://eprint.iacr.org/2022/368.pdf")
     print("output")
     print(ans)
 
-    ans = ParsePdfMetadata()._run("https://crypto.stanford.edu/~dabo/courses/cs355_fall07/pir.pdf")
+    ans = ParsePdfMetadata()._run("https://eprint.iacr.org/2022/368.pdf")
     print("output")
     print(ans)

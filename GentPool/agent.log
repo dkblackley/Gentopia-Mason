@@ -1,21 +1,106 @@
-INFO:root:Creating Config from file: ./gentpool/pool/test/agent.yaml
-INFO:root:Starting to load configuration from ./gentpool/pool/test/agent.yaml
-INFO:root:Successfully loaded configuration from ./gentpool/pool/test/agent.yaml
+INFO:root:Creating Config from file: ./gentpool/pool/pdf_search_scholar/agent.yaml
+INFO:root:Starting to load configuration from ./gentpool/pool/pdf_search_scholar/agent.yaml
+INFO:root:Successfully loaded configuration from ./gentpool/pool/pdf_search_scholar/agent.yaml
 INFO:root:--------------------
 INFO:root:[green]Welcome to Gentopia!
 INFO:root:--------------------
 INFO:root:[green]User: 
-INFO:root:test is thinking...
+INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
-INFO:root:[blue]test: 
-INFO:root:Hello! I'm an AI language model created by OpenAI. I'm here to help answer your questions, provide information, or assist with a variety of topics. How can I help you today?
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"google_search", "arguments":{"query":"David Wu SPIRAL paper pdf"}}
+
+INFO:root:Calling function: google_search ...
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:SearchResult(url=https://www.cs.utexas.edu/~dwu4/spiral.html, title=Publications, description=We introduce the Spiral family of single-server private information retrieval (PIR) protocols. Spiral relies on a composition of two lattice-based homomorphic ...)
+
+SearchResult(url=https://eprint.iacr.org/2022/368.pdf, title=Spiral: Fast, High-Rate Single-Server PIR via FHE Composition, description=by SJ Menon · 2022 · Cited by 88 — Abstract. We introduce the Spiral family of single-server private information retrieval (PIR) protocols. Spiral relies.)
+
+SearchResult(url=https://www.cs.utexas.edu/~dwu4/talks/Spiral0723.pdf, title=Spiral: Fast, High-Rate Single-Server PIR via FHE ..., description=SPIRAL: Fast High-Rate Single-Server. Private Information Retrieval. Samir Menon and David Wu. July 2023. IEEE Security and Privacy (“Oakland”), 2022. Page 2 ...)
+
+SearchResult(url=https://www.usenix.org/system/files/sec23fall-prepub-78-colombo.pdf, title=Authenticated private information retrieval, description=by S Colombo · Cited by 26 — David J. Wu. UT Austin. Bryan Ford. EPFL. Abstract. This paper introduces protocols for authenticated private information retrieval. These schemes enable a ...)
+
+SearchResult(url=https://git-crysp.uwaterloo.ca/iang/spiral-spir, title=Symmetric Private Information Retrieval (SPIR) built on Spiral, description=Spiral is a recent single-server (computational) PIR system from 2022: Samir Jordan Menon, David J. Wu, "Spiral: Fast, High-Rate Single-Server PIR via FHE ...)
+
+SearchResult(url=https://eprint.iacr.org/2022/949.pdf, title=Simple and Fast Single-Server Private Information Retrieval, description=by A Henzinger · 2022 · Cited by 77 — [76] Samir Jordan Menon and David J. Wu. Spiral: Fast, high-rate single-server PIR via FHE composition. In. S&P, 2022. [77] ...)
+
+SearchResult(url=https://www.usenix.org/system/files/sec23summer_27-henzinger-prepub.pdf, title=Simple and Fast Single-Server Private Information Retrieval, description=by A Henzinger · Cited by 77 — In this paper, we present two new single-server PIR schemes that exceed the throughput of all existing single-server PIR protocols and approach the throughput ...)
+
+SearchResult(url=https://scholar.google.com/citations?user=sow8PQYAAAAJ&hl=en, title=David Wu, description=DJ Wu, J Zimmerman, J Planul, JC Mitchell. arXiv preprint arXiv:1601.02281, 2016. 90, 2016. Spiral: Fast, high-rate single-server PIR via FHE composition. SJ ...)
+
+SearchResult(url=https://www.researchgate.net/publication/362983821_Experimental_Investigation_of_Interactions_Between_Two_Closely_Spaced_Azimuthal_Modes_in_a_Multi-Nozzle_Can_Combustor, title=Experimental Investigation of Interactions Between Two ..., description=This study investigates the instability amplitudes, spin ratio, and phase difference of two closely spaced, yet distinct azimuthal modes; one is the first ...)
+
+SearchResult(url=https://scholar.harvard.edu/files/dtingley/files/tinyml.pdf, title=Widening Access to Applied Machine Learning with TinyML, description=Abstract. Broadening access to both computational and educational resources is crit- ical to diffusing machine-learning (ML) innovation.)
+
+SearchResult(url=https://idr.nitk.ac.in/jspui/bitstream/123456789/14193/1/110657EC11F01.pdf, title=VISUALLY LOSSLESS COMPRESSION OF VOLUMETRIC ..., description=by C B K · 2017 — David Wu et al. (Wu et al. 2006) proposed a simple perceptual based ... pdf. (Accessed on June 2016). Safranek, R. J. and J. D. Johnston (1989). “A ...)
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"parse_pdf", "arguments":{"url":"https://eprint.iacr.org/2022/368.pdf","page_num":1}}
+
+INFO:root:Calling function: parse_pdf ...
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:The current state-of-the-art single-server PIR, OnionPIR [MCR21], achieves a rate of 0.24 and a throughput of 149
+MB/s. In contrast, the fastest two-server PIR scheme can achieve an essentially optimal rate of ≈1 and a throughput
+of5.5GB/s [HH19]. Thus, there remains a large gap between the performance of the best single-server PIR and the
+best two-server PIR protocols.
+This work. In this work, we introduce S/p.sc/i.sc/r.sc/a.sc/l.sc , a new family of lattice-based single-server PIR schemes that enables
+new trade-oﬀs in communication and computation. The basic instantiation of S/p.sc/i.sc/r.sc/a.sc/l.sc simultaneously achieves a
+4.5×reduction in query size, a 1.5×increase in the rate, and a 2×increase in the server throughput compared to
+OnionPIR [MCR21] (see Table 2).
+Like previous PIR protocols [ACLS18, GH19, PT20, ALP+21, MCR21, AYA+21], the S/p.sc/i.sc/r.sc/a.sc/l.sc protocol works in the
+model where the client starts by sending the server a set of query-independent public parameters. The server uses
+these parameters along with the client’s query to compute the response. Since these parameters can be reused for an
+arbitrary number of queries and they are independent of the query, the client can transmit these parameters to the
+server in a separate “oﬄine” phase. For this reason, we often distinguish between the oﬄine cost of generating and
+communicating the public parameters and the online cost of generating the query and computing the response.
+We also introduce several variants of S/p.sc/i.sc/r.sc/a.sc/l.sc that achieve higher server throughput and rates (i.e., reduced online
+cost) in exchange for larger queries and/or public parameters:
+•S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc : The S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc protocol variant is optimized for the streaming setting. In the streaming
+setting, the client’s query is reused across multiple databases, so we can amortize the cost of query generation
+and communication over multiple PIR responses. The S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc protocol has larger queries (30 MB), but
+achieves a rate of 0.49 ( 2×higher than OnionPIR) and an eﬀective server throughput of up to 1.5GB/s (roughly
+10×higher than OnionPIR). We provide more detailed benchmarks in Section 5.3 and Table 4.
+•S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc : The S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc protocol leverages a new response packing technique that reduces the online
+costs of S/p.sc/i.sc/r.sc/a.sc/l.sc (for databases with large records) at the expense of requiring a larger set of (reusable) public
+parameters. As we show in Section 5.3 and Table 3, when database records are large, S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc can achieve a
+30% higher rate compared to S/p.sc/i.sc/r.sc/a.sc/l.sc while simultaneously providing a similar or higher server throughput.
+The two optimizations we describe above can also be combined and we refer to the resulting protocol as S/p.sc/i.sc/r.sc/a.sc/l.sc/hyphen.sc
+S/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc . Compared to the other S/p.sc/i.sc/r.sc/a.sc/l.sc variants, S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc has the largest public parameter and query
+sizes, but is able to simultaneously achieve a high rate ( 0.81) and a high server throughput ( 1.9GB/s) on databases
+with over a million records. This represents a 2.1×increase in rate and 5.5×increase in throughput compared to the
+base version of S/p.sc/i.sc/r.sc/a.sc/l.sc . However, the size of the public parameters is 4.2×higher and the query size is over 2000×
+higher. In absolute terms, the public parameter size increases from 30 MB to 125 MB and the query size increases
+from 14 KB to 30 MB. We believe these remain reasonable for many streaming applications. Overall, for settings
+where both the public parameters and the query will be reused for a large number of queries, S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc
+likely oﬀers the most competitive performance.
+We note that for databases with suﬃciently-large records ( ≥30KB), the server throughput of our streaming
+constructions is 2–4×higher than that of full database encryption using a software-based AES implementation.
+We believe that this is the /f_irst single-server PIR where the server throughput is faster than applying a symmetric
+cryptographic primitive over the full database. Although this is still 2.9×slower than the best two-server PIR
+using hardware-accelerated AES [HH19], hardware acceleration for the lattice-based building blocks underlying our
+construction could help bridge this gap (e.g., [SFK+21]).
+A limitation of S/p.sc/i.sc/r.sc/a.sc/l.sc is that it generally requires larger public parameters compared with previous schemes.
+To compare, the public parameters in SealPIR [ACLS18], FastPIR [AYA+21], and OnionPIR [MCR21] are 3.4 MB,
+1.4 MB, and 4.6 MB, respectively. In S/p.sc/i.sc/r.sc/a.sc/l.sc , they range from 14 to 18 MB and for S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc , they range from
+344 KB to 3 MB. The larger parameters in S/p.sc/i.sc/r.sc/a.sc/l.sc are needed to enable our new ciphertext translation procedures
+(Sections 1.2 and 3) that are critical for reducing the online costs of our protocol. The S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc variant requires
+public parameters that range from 14 to 47 MB (in order to support ciphertext packing).
+2
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:On the second page of David Wu's paper titled "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition," the content discusses the performance of the current state-of-the-art single-server Private Information Retrieval (PIR) protocol, OnionPIR, which achieves a rate of 0.24 and a throughput of 149 MB/s. In contrast, the fastest two-server PIR scheme can achieve a rate of approximately 1 and a throughput of 5.5 GB/s. The paper introduces the Spiral family of lattice-based single-server PIR schemes, which enables new trade-offs in communication and computation.
+
+Key points include:
+- The basic instantiation of Spiral achieves a 4.5× reduction in query size, a 1.5× increase in rate, and a 2× increase in server throughput compared to OnionPIR.
+- The protocol operates in a model where the client sends a set of query-independent public parameters to the server, which can be reused for multiple queries.
+- Several variants of the Spiral protocol are introduced, optimized for different settings, such as streaming and response packing, each with varying trade-offs in terms of query size, rate, and server throughput.
+
+The paper emphasizes the competitive performance of the Spiral protocol in comparison to existing schemes, particularly in scenarios where public parameters and queries are reused for multiple queries.
 INFO:root:Done
 INFO:root:[green]User: 
-INFO:root:test is thinking...
-INFO:root:Done
-INFO:root:[blue]test: 
-INFO:root:It seems like you might want to end our conversation. If you have any more questions or need assistance in the future, feel free to return. Have a great day!
-INFO:root:Done
-INFO:root:[green]User: 
-INFO:root:
-[red]Bye!

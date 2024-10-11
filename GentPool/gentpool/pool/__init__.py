@@ -10,3 +10,4 @@ from .openai_memory_template import *
 from .vanilla-ziyu import *
 from .scholar-ziyu import *
 from .test import *
+from .pdf_search_scholar import *
