@@ -104,3 +104,5 @@ Key points include:
 The paper emphasizes the competitive performance of the Spiral protocol in comparison to existing schemes, particularly in scenarios where public parameters and queries are reused for multiple queries.
 INFO:root:Done
 INFO:root:[green]User: 
+INFO:root:
+[red]Bye!
