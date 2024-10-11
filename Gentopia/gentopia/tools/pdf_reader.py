@@ -7,7 +7,7 @@ from pypdf import PdfReader
 from io import BytesIO
 
 class PdfArg(BaseModel):
-    url: str = Field(..., description="A url that points to a .pdf file. MUST END WITH \".pdf\"")
+    url: str = Field(..., description="A url that points to a .pdf file. URL MUST END WITH \".pdf\"")
     page_num: int = Field(..., description="The page number you want, defaults to 0 (the first page)")
 
 class ParsePdf(BaseTool):
@@ -32,7 +32,7 @@ class ParsePdf(BaseTool):
 
             return page_text
         except Exception:
-            return "Error reading pdf!"
+            return "Error reading pdf! Double check the url ends with .pdf and try to search for a different link if it doesn't"
 
 
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:

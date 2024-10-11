@@ -67,7 +67,7 @@ SearchResult(url=https://git-crysp.uwaterloo.ca/iang/spiral-spir, title=Symmetri
 
 SearchResult(url=https://www.researchgate.net/profile/David-Wu, title=David Wu Academia Sinica · Institute of Chemistry, description=In this paper, equilibrium properties of structure II hydrates of hydrogen were determined from Monte Carlo simulations in the isothermal-isobaric Gibbs ...)
 
-SearchResult(url=https://groups.google.com/g/friam/c/0C96M963i-g, title=Practical homomorphic encryption, description=I didn't read the paper, but I did try their demo. ... Subject: Samir Menon: Spiral: Fast, High-Rate Single-Server PIR via FHE Composition ... This is joint work ...)
+SearchResult(url=https://groups.google.com/g/friam/c/0C96M963i-g, title=Practical homomorphic encryption, description=Subject: Samir Menon: Spiral: Fast, High-Rate Single-Server PIR via FHE Composition ... This is joint work with David Wu. --++**==--++**==--++**==--++**==--++ ...)
 INFO:root:--------------------
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
@@ -125,85 +125,202 @@ INFO:root:--------------------
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
 INFO:root:[blue]pdf_search_scholar: 
-INFO:root:{"name":"parse_pdf", "arguments":{"url":"https://eprint.iacr.org/2022/368.pdf","page_num":1}}
+INFO:root:David Wu's paper on SPIRAL introduces a family of single-server private information retrieval (PIR) protocols that leverage a combination of two lattice-based homomorphic encryption schemes: the Regev and Gentry-Sahai-Waters schemes. The paper presents innovative ciphertext translation techniques that enhance communication and computation efficiency, achieving significant reductions in query and response sizes while increasing server throughput. Notably, the optimized variant for streaming applications demonstrates a throughput of 1.9GB/s for large databases, marking a substantial improvement over previous protocols.
+INFO:root:Done
+INFO:root:[green]User: 
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"search_single_paper", "arguments":{"title":"OnionPIR","top_k":5}}
 
-INFO:root:Calling function: parse_pdf ...
+INFO:root:Calling function: search_single_paper ...
+INFO:scholarly:Getting https://scholar.google.com/scholar?hl=en&q=OnionPIR
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?hl=en&q=OnionPIR "HTTP/1.1 200 OK"
 INFO:root:Done
 INFO:root:--------------------
-INFO:root:The current state-of-the-art single-server PIR, OnionPIR [MCR21], achieves a rate of 0.24 and a throughput of 149
-MB/s. In contrast, the fastest two-server PIR scheme can achieve an essentially optimal rate of ≈1 and a throughput
-of5.5GB/s [HH19]. Thus, there remains a large gap between the performance of the best single-server PIR and the
-best two-server PIR protocols.
-This work. In this work, we introduce S/p.sc/i.sc/r.sc/a.sc/l.sc , a new family of lattice-based single-server PIR schemes that enables
-new trade-oﬀs in communication and computation. The basic instantiation of S/p.sc/i.sc/r.sc/a.sc/l.sc simultaneously achieves a
-4.5×reduction in query size, a 1.5×increase in the rate, and a 2×increase in the server throughput compared to
-OnionPIR [MCR21] (see Table 2).
-Like previous PIR protocols [ACLS18, GH19, PT20, ALP+21, MCR21, AYA+21], the S/p.sc/i.sc/r.sc/a.sc/l.sc protocol works in the
-model where the client starts by sending the server a set of query-independent public parameters. The server uses
-these parameters along with the client’s query to compute the response. Since these parameters can be reused for an
-arbitrary number of queries and they are independent of the query, the client can transmit these parameters to the
-server in a separate “oﬄine” phase. For this reason, we often distinguish between the oﬄine cost of generating and
-communicating the public parameters and the online cost of generating the query and computing the response.
-We also introduce several variants of S/p.sc/i.sc/r.sc/a.sc/l.sc that achieve higher server throughput and rates (i.e., reduced online
-cost) in exchange for larger queries and/or public parameters:
-•S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc : The S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc protocol variant is optimized for the streaming setting. In the streaming
-setting, the client’s query is reused across multiple databases, so we can amortize the cost of query generation
-and communication over multiple PIR responses. The S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc protocol has larger queries (30 MB), but
-achieves a rate of 0.49 ( 2×higher than OnionPIR) and an eﬀective server throughput of up to 1.5GB/s (roughly
-10×higher than OnionPIR). We provide more detailed benchmarks in Section 5.3 and Table 4.
-•S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc : The S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc protocol leverages a new response packing technique that reduces the online
-costs of S/p.sc/i.sc/r.sc/a.sc/l.sc (for databases with large records) at the expense of requiring a larger set of (reusable) public
-parameters. As we show in Section 5.3 and Table 3, when database records are large, S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc can achieve a
-30% higher rate compared to S/p.sc/i.sc/r.sc/a.sc/l.sc while simultaneously providing a similar or higher server throughput.
-The two optimizations we describe above can also be combined and we refer to the resulting protocol as S/p.sc/i.sc/r.sc/a.sc/l.sc/hyphen.sc
-S/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc . Compared to the other S/p.sc/i.sc/r.sc/a.sc/l.sc variants, S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc has the largest public parameter and query
-sizes, but is able to simultaneously achieve a high rate ( 0.81) and a high server throughput ( 1.9GB/s) on databases
-with over a million records. This represents a 2.1×increase in rate and 5.5×increase in throughput compared to the
-base version of S/p.sc/i.sc/r.sc/a.sc/l.sc . However, the size of the public parameters is 4.2×higher and the query size is over 2000×
-higher. In absolute terms, the public parameter size increases from 30 MB to 125 MB and the query size increases
-from 14 KB to 30 MB. We believe these remain reasonable for many streaming applications. Overall, for settings
-where both the public parameters and the query will be reused for a large number of queries, S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.scP/a.sc/c.sc/k.sc
-likely oﬀers the most competitive performance.
-We note that for databases with suﬃciently-large records ( ≥30KB), the server throughput of our streaming
-constructions is 2–4×higher than that of full database encryption using a software-based AES implementation.
-We believe that this is the /f_irst single-server PIR where the server throughput is faster than applying a symmetric
-cryptographic primitive over the full database. Although this is still 2.9×slower than the best two-server PIR
-using hardware-accelerated AES [HH19], hardware acceleration for the lattice-based building blocks underlying our
-construction could help bridge this gap (e.g., [SFK+21]).
-A limitation of S/p.sc/i.sc/r.sc/a.sc/l.sc is that it generally requires larger public parameters compared with previous schemes.
-To compare, the public parameters in SealPIR [ACLS18], FastPIR [AYA+21], and OnionPIR [MCR21] are 3.4 MB,
-1.4 MB, and 4.6 MB, respectively. In S/p.sc/i.sc/r.sc/a.sc/l.sc , they range from 14 to 18 MB and for S/p.sc/i.sc/r.sc/a.sc/l.scS/t.sc/r.sc/e.sc/a.sc/m.sc , they range from
-344 KB to 3 MB. The larger parameters in S/p.sc/i.sc/r.sc/a.sc/l.sc are needed to enable our new ciphertext translation procedures
-(Sections 1.2 and 3) that are critical for reducing the online costs of our protocol. The S/p.sc/i.sc/r.sc/a.sc/l.scP/a.sc/c.sc/k.sc variant requires
-public parameters that range from 14 to 47 MB (in order to support ciphertext packing).
-2
+INFO:root:{'title': 'OnionPIR: Response efficient single-server PIR', 'author': ['MH Mughees', 'H Chen', 'L Ren'], 'pub_year': '2021', 'venue': 'Proceedings of the 2021 ACM SIGSAC …', 'abstract': 'OnionPIR and stateful OnionPIR, two singleserver PIR schemes that significantly improve  the response size and computation cost over state-of-the-art schemes. OnionPIR  OnionPIR', 'url': 'https://dl.acm.org/doi/abs/10.1145/3460120.3485381', 'citation': 80}
 INFO:root:--------------------
 INFO:root:pdf_search_scholar is thinking...
 INFO:root:Done
 INFO:root:[blue]pdf_search_scholar: 
-INFO:root:David Wu's paper titled "Spiral: Fast, High-Rate Single-Server PIR via FHE Composition" introduces a new family of single-server private information retrieval (PIR) protocols called SPIRAL. This work focuses on improving the efficiency of single-server PIR systems, which allow a client to retrieve data from a database without revealing which specific record is being accessed.
+INFO:root:{"name":"search_related_paper", "arguments":{"title":"OnionPIR: Response efficient single-server PIR","top_k":5}}
 
-### Key Contributions:
-1. **Lattice-Based Homomorphic Encryption**: SPIRAL relies on a combination of two lattice-based homomorphic encryption schemes: the Regev encryption scheme and the Gentry-Sahai-Waters encryption scheme. This combination enables new techniques for ciphertext translation, which facilitate trade-offs in communication and computation.
+INFO:root:Calling function: search_related_paper ...
+INFO:scholarly:Getting https://scholar.google.com/scholar?hl=en&q=OnionPIR%3A%20Response%20efficient%20single-server%20PIR
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?hl=en&q=OnionPIR%3A%20Response%20efficient%20single-server%20PIR "HTTP/1.1 200 OK"
+INFO:scholarly:Getting https://scholar.google.com/scholar?q=related:HU7YPzQdhCgJ:scholar.google.com/&scioq=OnionPIR:+Response+efficient+single-server+PIR&hl=en&as_sdt=0,47
+INFO:httpx:HTTP Request: GET https://scholar.google.com/scholar?q=related:HU7YPzQdhCgJ:scholar.google.com%2F&scioq=OnionPIR:+Response+efficient+single-server+PIR&hl=en&as_sdt=0,47 "HTTP/1.1 200 OK"
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:{'title': 'OnionPIR: Response efficient single-server PIR', 'author': ['MH Mughees', 'H Chen', 'L Ren'], 'pub_year': '2021', 'venue': 'Proceedings of the 2021 ACM SIGSAC …', 'abstract': 'This paper presents OnionPIR and stateful OnionPIR, two single-server PIR schemes that significantly improve the response size and computation cost over state-of-the-art schemes', 'url': 'https://dl.acm.org/doi/abs/10.1145/3460120.3485381', 'citation': 80}
 
-2. **Performance Improvements**: The basic version of SPIRAL achieves significant performance enhancements:
-   - **4.5× reduction in query size**
-   - **1.5× increase in response size**
-   - **2× increase in server throughput** compared to previous systems like OnionPIR.
+{'title': 'Spiral: Fast, high-rate single-server PIR via FHE composition', 'author': ['SJ Menon', 'DJ Wu'], 'pub_year': '2022', 'venue': '2022 IEEE Symposium on Security and …', 'abstract': 'We introduce the SPIRAL family of single-server private information retrieval (PIR) protocols. SPIRAL relies on a composition of two lattice-based homomorphic encryption schemes: the', 'url': 'https://ieeexplore.ieee.org/abstract/document/9833700/', 'citation': 88}
 
-3. **Streaming Optimization**: A variant of the protocol, optimized for streaming applications, achieves a server throughput of **1.9 GB/s** for databases with over a million records, which is a substantial improvement over previous protocols.
+{'title': 'Compressible FHE with applications to PIR', 'author': ['C Gentry', 'S Halevi'], 'pub_year': '2019', 'venue': 'Theory of Cryptography Conference', 'abstract': 'Homomorphic encryption (HE) is often viewed as impractical, both in communication and computation. Here we provide an additively homomorphic encryption scheme based on', 'url': 'https://link.springer.com/chapter/10.1007/978-3-030-36033-7_17', 'citation': 102}
 
-4. **Cost Efficiency**: For streaming large records, the estimated monetary cost of using SPIRAL is only **1.9× greater** than the baseline of directly downloading the desired record without privacy.
+{'title': 'Labeled PSI from fully homomorphic encryption with malicious security', 'author': ['H Chen', 'Z Huang', 'K Laine', 'P Rindal'], 'pub_year': '2018', 'venue': 'Proceedings of the 2018 ACM …', 'abstract': 'Private Set Intersection (PSI) allows two parties, the sender and the receiver, to compute the intersection of their private sets without revealing extra information to each other. We are', 'url': 'https://dl.acm.org/doi/abs/10.1145/3243734.3243836', 'citation': 187}
 
-### Technical Details:
-- The paper discusses the structure of the SPIRAL protocol, which operates in two phases: an offline phase where public parameters are generated and communicated, and an online phase where the client sends queries and receives responses.
-- The authors introduce several variants of SPIRAL that optimize for different scenarios, such as larger records or higher throughput, while also discussing the trade-offs involved.
+{'title': 'Doubly efficient private information retrieval and fully homomorphic RAM computation from ring LWE', 'author': ['WK Lin', 'E Mook', 'D Wichs'], 'pub_year': '2023', 'venue': 'Proceedings of the 55th Annual ACM …', 'abstract': 'A (single server) private information retrieval (PIR) allows a client to read data from a public database held on a remote server, without revealing to the server which locations she is', 'url': 'https://dl.acm.org/doi/abs/10.1145/3564246.3585175', 'citation': 48}
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"parse_pdf", "arguments":{"url":"https://dl.acm.org/doi/abs/10.1145/3460120.3485381","page_num":0}}
 
-### Limitations:
-- One limitation noted is that SPIRAL generally requires larger public parameters compared to previous schemes, which may affect its practicality in certain applications.
+INFO:root:Calling function: parse_pdf ...
+WARNING:pypdf._reader:invalid pdf header: b'<!DOC'
+WARNING:pypdf._reader:EOF marker not found
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:Error reading pdf! Double check the url ends with .pdf and try to search for a different link if it doesn't
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"google_search", "arguments":{"query":"OnionPIR paper PDF"}}
 
-Overall, the SPIRAL protocol represents a significant advancement in the field of private information retrieval, particularly for single-server systems, by leveraging advanced encryption techniques to enhance both efficiency and privacy. 
+INFO:root:Calling function: google_search ...
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:SearchResult(url=https://eprint.iacr.org/2021/1081.pdf, title=OnionPIR: Response Efficient Single-Server PIR, description=by MH Mughees · 2021 · Cited by 80 — This paper presents OnionPIR and stateful OnionPIR, two single- server PIR schemes that significantly improve the response size and computation cost over ...)
 
-If you need more specific details or further analysis, feel free to ask!
+SearchResult(url=https://encrypto.de/papers/DHS17.pdf, title=OnionPIR: Effective Protection of Sensitive Metadata in Online ..., description=Throughout the paper we use the following notation: The database that may be queried by clients is divided into B blocks of size b bits each and distributed to ...)
+
+SearchResult(url=https://dl.acm.org/doi/10.1145/3460120.3485381, title=OnionPIR: Response Efficient Single-Server PIR, description=Nov 13, 2021 — This paper presents OnionPIR and stateful OnionPIR, two single-server PIR schemes that significantly improve the response size and computation cost over state- ...)
+
+SearchResult(url=https://www.semanticscholar.org/paper/OnionPIR%3A-Response-Efficient-Single-Server-PIR-Mughees-Chen/ae22d1db35a6f8b8463a1fc2a61b839ccadc7c9f, title=[PDF] OnionPIR: Response Efficient Single-Server PIR, description=The stateful OnionPIR scheme improves upon the recent stateful PIR framework of Patel et al. and drastically reduces its response overhead by avoiding ...)
+
+SearchResult(url=https://www.researchgate.net/publication/356202594_OnionPIR_Response_Efficient_Single-Server_PIR, title=OnionPIR: Response Efficient Single-Server PIR, description=Request Full-text Paper PDF. To read the full-text of this research, you can request a copy directly from the authors. Request full-text PDF. Citations (36) ...)
+
+SearchResult(url=https://www.researchgate.net/publication/318161895_OnionPIR_Effective_Protection_of_Sensitive_Metadata_in_Online_Communication_Networks, title=OnionPIR: Effective Protection of Sensitive Metadata in ..., description=This paper gives a short introduction and a comparison on two low-latency anonymous communication networks. The main part features a review of the low latency ...)
+
+SearchResult(url=https://link.springer.com/chapter/10.1007/978-3-319-61204-1_30, title=OnionPIR: Effective Protection of Sensitive Metadata in ..., description=by D Demmler · 2017 · Cited by 6 — By providing and evaluating a prototype, we show that OnionPIR is usable in practice. ... Download conference paper PDF. Similar content being ...)
+
+SearchResult(url=https://sites.ualberta.ca/~mkhabbaz/assets/pdf/Onion.pdf, title=Short Paper: Onion Messages on Leash, description=by A Bashiri — Onion messages (OMs) are private messages sent between nodes in the Lightning Network (LN) using onion routing. While they are intended to enable interesting ...)
+
+SearchResult(url=https://www.ieee-security.org/TC/SP2020/tot-papers/syverson-1997.pdf, title=Anonymous Connections And Onion Routing, description=by PF Syverson · Cited by 847 — Onion Routing provides anonymous connections that are strongly resistant to both eavesdropping and trajgic analysis. Unmodified Internet applications can.)
+
+SearchResult(url=https://people.cs.vt.edu/danfeng/papers/157.pdf, title=A Formal Treatment of Onion Routing, description=by J Camenisch · Cited by 222 — Abstract. Anonymous channels are necessary for a multitude of privacy-protecting protocols. Onion routing is probably the best known.)
+
+SearchResult(url=https://petsymposium.org/popets/2024/popets-2024-0045.pdf, title=A Framework for Provably Secure Onion Routing against a ..., description=by P Scherer · 2024 — we construct in this paper. Finally, [26] adapt [20]'s formalization for the ... https://nymtech.net/nym-whitepaper.pdf. [15] Roger Dingledine, Nick ...)
+
+SearchResult(url=https://apps.dtic.mil/sti/tr/pdf/ADA465335.pdf, title=Anonymous Connections and Onion Routing - DTIC, description=by MG Reed · Cited by 1648 — This paper also describes several application proxies for onion routing, as well as configurations of onion routing networks. 1 Introduction. Is Internet ...)
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:{"name":"parse_pdf", "arguments":{"url":"https://eprint.iacr.org/2021/1081.pdf","page_num":0}}
+
+INFO:root:Calling function: parse_pdf ...
+INFO:root:Done
+INFO:root:--------------------
+INFO:root:OnionPIR: Response Efficient Single-Server PIR
+Muhammad Haris Mughees
+University of Illinois at
+Urbana-Champaign
+mughees2@illinois.eduHao Chen∗
+Facebook
+haoche@fb.comLing Ren
+University of Illinois at
+Urbana-Champaign
+renling@illinois.edu
+ABSTRACT
+This paper presents OnionPIR and stateful OnionPIR , two single-
+server PIR schemes that significantly improve the response size and
+computation cost over state-of-the-art schemes. OnionPIR scheme
+utilizes recent advances in somewhat homomorphic encryption
+(SHE) and carefully composes two lattice-based SHE schemes and
+homomorphic operations to control the noise growth and response
+size. Stateful OnionPIR uses a technique based on the homomor-
+phic evaluation of copy networks. OnionPIR achieves a response
+overhead of just 4.2x over the insecure baseline, in contrast to the
+100x response overhead of state-of-the-art schemes. Our stateful
+OnionPIR scheme improves upon the recent stateful PIR frame-
+work of Patel et al. and drastically reduces its response overhead
+by avoiding downloading the entire database in the offline stage.
+Compared to stateless OnionPIR , Stateful OnionPIR reduces the
+computation cost by 1.8∼22x for different database sizes.
+1 INTRODUCTION
+Protecting user privacy is becoming a critical concern to cloud ap-
+plications and service providers. Private information retrieval (PIR)
+is an important cryptographic primitive to protect user privacy
+when fetching data from the cloud. Informally, PIR allows a user
+to retrieve a particular entry from a public database without re-
+vealing the identity of the entry to the database server. Recently,
+PIR has been suggested for various applications, including anony-
+mous communication [ 5,51], privacy-preserving media streaming
+[40], ad delivery [ 39], location routing [ 32], contact discovery [ 11],
+password-checking [2], and safe-browsing [46].
+At a high level, PIR schemes can be classified into single-
+server [2,4,14,19,33,47,49,50,53] ones and multi-server
+ones [ 7,8,23,24,30,30,36,60,61,61]. Multi-server schemes are
+generally more efficient but they need the stronger trust assump-
+tion of multiple non-colluding servers. This requires coordination
+from multiple organizations makes them hard to deploy in practice.
+In this paper, we will focus on single-server PIR, which has thus
+far been quite inefficient. The central goal of this project is to sub-
+stantially improve the efficiency of single-server PIR schemes and
+enable them for practical adoption.
+In PIR, there are three main performance measures: the request
+size, the response size , and the server’s computation cost . There are
+often trade-offs between these measures. For example, a trivial
+(singer-server) PIR scheme is to download the whole database. This
+trivial scheme involves no server computation and has almost zero
+request size, but it incurs a huge response size. State-of-the-art
+single-server PIR schemes have achieved a reasonably small request
+size. For example, SealPIR ’s request size can be made only 32KB
+(after applying a standard optimization discussed in Section 4.3)
+∗The work was partially done when Hao Chen was at Microsoft Research.for a database with up to four million entries [ 4]. But they are still
+very expensive in terms of response size and server computation,
+as we elaborate below.
+•Large response. State-of-the-art single-server PIR schemes incur
+around 100x overhead in response size. That means to fetch a 30
+KB entry (e.g., an ad), the client needs to download 3MB of data.
+•Heavy computation. State-of-the-art single-server PIR schemes
+require heavy computation on the server. For example, SealPIR
+requires about 400seconds of server computation to fetch a 30
+KB file from a database with one million entries.
+This paper addresses the above two performance issues of single-
+server PIRs.
+Main contribution 1. We first present a new single-server PIR
+scheme we call OnionPIR that significantly improves the response
+size. The main technique is to carefully control the noise growth
+from the ciphertext operations on the server with the help of re-
+cent advances in homomorphic encryption schemes. OnionPIR
+has a mere 4.2x response size overhead (over the insecure base-
+line), in contrast to the 100x overhead in state-of-the-art schemes
+likeSealPIR . Concretely, to download a 30KB entry, the client in
+OnionPIR only needs to download 128KB of data.
+OnionPIR maintains a similar computation cost as SealPIR . The
+small downside of OnionPIR is a slight increase in the client request
+size for small databases. Specifically, for a database with one million
+entries, the request size in OnionPIR is64KB, which is about twice
+as large as SealPIR ’s request size of 32KB. However, we note that
+the request size for OnionPIR remains 64KB even for all realistic
+database sizes in practice. In contrast, the request size for SealPIR
+starts to increase quickly once the database size exceeds four million:
+it becomes 64KB for a database with 16millions entries and around
+512KB for one billion entries.
+Main contribution 2. Next, to address the computation issue, we
+improve the Stateful PIR paradigm of Patel et al. [ 54] and integrate it
+with OnionPIR . In stateful PIR, the client has a local state and uses
+that state to make PIR queries cheaper [ 26,54]. The original stateful
+PIR scheme of Patel et al. can already improve computation but it
+requires the client to download the whole database in the offline
+phase, which drastically increases the amortized response size. We
+develop a new technique based on homomorphic evaluation of copy
+networks [28,48] to reap the computation savings of stateful PIR
+while increasing the amortized response size by only a factor of
+two over stateless OnionPIR . The benefit of our stateful OnionPIR
+scales with the size of the database. For database sizes from 216to
+224, the reduction in computation over stateless OnionPIR ranges
+from 1.8x to22x. Similarly, compared to the original stateful PIR
+scheme of Patel et. al., the response size is reduced by 27∼3,900x.
+These reductions also translate into better monetary costs of stateful
+INFO:root:--------------------
+INFO:root:pdf_search_scholar is thinking...
+INFO:root:Done
+INFO:root:[blue]pdf_search_scholar: 
+INFO:root:The paper "OnionPIR: Response Efficient Single-Server PIR" introduces two single-server private information retrieval (PIR) schemes, OnionPIR and stateful OnionPIR, which significantly enhance response size and computation efficiency compared to existing methods. OnionPIR achieves a response overhead of only 4.2 times the insecure baseline, a substantial improvement over the 100 times overhead seen in state-of-the-art schemes. The stateful variant further optimizes computation costs by leveraging homomorphic evaluation techniques, resulting in a reduction of computation costs by up to 22 times for larger databases. Overall, these advancements make OnionPIR a promising solution for practical applications requiring user privacy.
 INFO:root:Done
 INFO:root:[green]User: 
