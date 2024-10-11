@@ -71,83 +71,67 @@ class SearchNews(BaseTool):
                         "Can also be insightful if someone just asks a general question about something or someplace")
     args_schema: Optional[Type[BaseModel]] = SearchNewsArgs
 
-    def _run(self, query: AnyStr) -> AnyStr:
-        news_sites = {
-        "ABC News": f"https://abcnews.go.com/search?searchtext={quote_plus(query)}",
-        "CNN": f"https://www.cnn.com/search?q=&{quote_plus(query)}&from=0&size=10&page=1&sort=newest&types=all&section="
-            
-        }
 
-        print(news_sites)
+    def _run(self, query):
+        # Replace spaces with '+' for the query string
+        query = query.replace(' ', '+')
+        url = f"https://news.google.com/search?q={query}&hl=en-US&gl=US&ceid=US:en"
 
-        results = {}
-        # Set headers to mimic a browser
-        headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-        }
 
-        for site, url in news_sites.items():
-            try:
-                response = requests.get(url, headers=headers)
-                print(url)
-                soup = BeautifulSoup(response.content, 'html.parser')
-                articles = []
-
-                print(response.content)
-
-                if site == "ABC News":
-                    for article in soup.select('h2 a.AnchorLink')[:3]:
-                        anchor_tag = soup.find('a', class_='AnchorLink')
-                        headline = article.text.strip()
-                        link = article['href']
-                        if link == "/":
-                            continue
-                        content = get_article_content(link, site)
-                        articles.append({"headline": headline, "link": link, "content": content})
-
-                elif site == "CNN":
-                    for article in soup.select('span.container__headline-text')[:3]:
-                        headline = article.text.strip()
-                        link = article.find_parent('a')['href']
-                        content = get_article_content(link, site)
-                        articles.append({"headline": headline, "link": link, "content": content})
-
-                results[site] = articles
-
-            except Exception as e:
-                print(f"Error scraping {site}: {str(e)}")
-
-        return results
+        num_articles = 10
+        response = requests.get(url)
+    
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the HTML content
+            soup = BeautifulSoup(response.text, 'html.parser')
         
+            # Find articles
+            articles = soup.find_all('article', limit=num_articles)
+            article_content = []
+            for article in articles:
+                # Extract the title and link
+                title = article.find('h3').text if article.find('h3') else "No title found"
+                link = article.find('a')['href'] if article.find('a') else "No link found"
+                link = f"https://news.google.com{link[1:]}"  # Append the base URL
+                article_content.append(get_article_content(link))
+            return '\n\n'.join(article_content)
+        else:
+            return "Failed to retrieve news articles"
+
     async def _arun(self, *args: Any, **kwargs: Any) -> Any:
         raise NotImplementedError
 
-    
 
-def get_article_content(url, site):
+
+def get_article_content(url):
     try:
-        response = requests.get(url)
-        print(url)
+        headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        }
+        print(url  )
+        response = requests.get(url, headers=headers)
+        assert response.status_code == 200
+        print(response)
         soup = BeautifulSoup(response.content, 'html.parser')
-        
-        
-        if site == "ABC News":
-            paragraphs = soup.select('p.EkqkG')
-        elif site == "CNN":
-            paragraphs = soup.select('p.paragraph')
-        
-        content = ' '.join([p.text.strip() for p in paragraphs])
+
+        paragraphs = soup.find_all('p')
+        content = []
+        for p in paragraphs:
+            content.append(p.get_text())
+        paragraphs = soup.select('p')
+        content = '\n'.join(content)
+        print(content)
         return content
     except Exception as e:
-        print(f"Error getting content from {url}: {str(e)}")
-        return ""
+        return f"Error getting content "
     
 if __name__ == "__main__":
-    # ans = ScrapeHeadlines()._run()
-    # print("output")
-    # print(ans)
+    ans = ScrapeHeadlines()._run()
+    print("output")
+    print(ans)
 
-    ans = SearchNews()._run("Florida")
+    ans = SearchNews()._run("james")
     print("output")
     print(ans)
 
