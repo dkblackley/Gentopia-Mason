@@ -7,6 +7,7 @@ from pypdf import PdfReader
 from io import BytesIO
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
+import time
 
 class ScrapeHeadlines(BaseTool):
     name = "get_headlines"
@@ -109,29 +110,32 @@ def get_article_content(url):
         headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
-        print(url  )
+
+        time.sleep(1) # Stop 429 too many requests
         response = requests.get(url, headers=headers)
-        assert response.status_code == 200
+        print(url)
         print(response)
+        assert response.status_code == 200
         soup = BeautifulSoup(response.content, 'html.parser')
 
         paragraphs = soup.find_all('p')
+        soup.prettify()[:1000]
         content = []
         for p in paragraphs:
             content.append(p.get_text())
         paragraphs = soup.select('p')
         content = '\n'.join(content)
+        print("content:")
         print(content)
         return content
     except Exception as e:
         return f"Error getting content "
     
 if __name__ == "__main__":
-    ans = ScrapeHeadlines()._run()
-    print("output")
-    print(ans)
+    # ans = ScrapeHeadlines()._run()
+    # print("output")
+    # print(ans)
 
     ans = SearchNews()._run("james")
     print("output")
     print(ans)
-
