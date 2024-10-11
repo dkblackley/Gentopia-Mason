@@ -7,7 +7,9 @@ from pypdf import PdfReader
 from io import BytesIO
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
+from selenium import webdriver
 import time
+from playwright.sync_api import sync_playwright
 
 class ScrapeHeadlines(BaseTool):
     name = "get_headlines"
@@ -105,31 +107,42 @@ class SearchNews(BaseTool):
 
 
 
+
 def get_article_content(url):
     try:
-        headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'
-        }
+        # Start Playwright and open a browser in headless mode
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            
+            # Set a user-agent to mimic a real browser
+            page.set_user_agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3')
+            
+            # Navigate to the URL
+            page.goto(url)
+            
+            # Wait for content to load; you can adjust the time or use other wait conditions if needed
+            page.wait_for_timeout(5000)  # Wait for 5 seconds
 
-        time.sleep(1) # Stop 429 too many requests
-        response = requests.get(url, headers=headers)
-        print(url)
-        print(response)
-        assert response.status_code == 200
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        paragraphs = soup.find_all('p')
-        soup.prettify()[:1000]
-        content = []
-        for p in paragraphs:
-            content.append(p.get_text())
-        paragraphs = soup.select('p')
-        content = '\n'.join(content)
-        print("content:")
-        print(content)
-        return content
+            # Get the page content after JavaScript has loaded
+            html = page.content()
+            
+            # Parse the HTML with BeautifulSoup
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(html, 'html.parser')
+            paragraphs = soup.find_all('p')
+            content = '\n'.join(p.get_text(strip=True) for p in paragraphs)
+            
+            print("Extracted content:")
+            print(content)
+            
+            # Close the browser
+            browser.close()
+            
+            return content
     except Exception as e:
-        return f"Error getting content "
+        print(f"Error getting content: {e}")
+        return None
     
 if __name__ == "__main__":
     # ans = ScrapeHeadlines()._run()
